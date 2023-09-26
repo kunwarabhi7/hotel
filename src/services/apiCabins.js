@@ -38,6 +38,7 @@ export async function createEditCabin(newCabin, id) {
     throw new Error("Cabins could not be loaded");
   }
   //Upload Image
+  if (hasImagePath) return data;
 
   const avatarFile = event?.target?.files[0];
   const { error: storageError } = await supabase.storage
