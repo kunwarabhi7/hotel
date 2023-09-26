@@ -2,22 +2,38 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import { useSettings } from "./useSettings";
+import Spinner from "../../ui/Spinner";
 
 function UpdateSettingsForm() {
-  const { isLoading, settings } = useSettings();
+  const { isLoading, settings = {} } = useSettings();
+  const {
+    breakfastPrice,
+    MaxBookingLength,
+    minBookingLength,
+    maxGuestsPerBooking,
+  } = settings;
+  if (isLoading) return <Spinner />;
   return (
     <Form>
       <FormRow label="Minimum nights/booking">
-        <Input type="number" id="min-nights" />
+        <Input type="number" defaultValue={minBookingLength} id="min-nights" />
       </FormRow>
       <FormRow label="Maximum nights/booking">
-        <Input type="number" id="max-nights" />
+        <Input defaultValue={MaxBookingLength} type="number" id="max-nights" />
       </FormRow>
       <FormRow label="Maximum guests/booking">
-        <Input type="number" id="max-guests" />
+        <Input
+          defaultValue={maxGuestsPerBooking}
+          type="number"
+          id="max-guests"
+        />
       </FormRow>
       <FormRow label="Breakfast price">
-        <Input type="number" id="breakfast-price" />
+        <Input
+          defaultValue={breakfastPrice}
+          type="number"
+          id="breakfast-price"
+        />
       </FormRow>
     </Form>
   );
