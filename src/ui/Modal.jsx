@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 
@@ -52,7 +53,7 @@ const Button = styled.button`
 `;
 
 const Modal = ({ children, setIsOpenModal }) => {
-  return (
+  return createPortal(
     <Overlay>
       <StyledModal>
         <Button onClick={() => setIsOpenModal((show) => !show)}>
@@ -60,7 +61,8 @@ const Modal = ({ children, setIsOpenModal }) => {
         </Button>
         <div>{children}</div>
       </StyledModal>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 };
 
