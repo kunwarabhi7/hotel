@@ -11,7 +11,7 @@ const AddCabin = () => {
         Add new Cabin
       </Button>
       {isOpenModal && (
-        <Modal>
+        <Modal setIsOpenModal={setIsOpenModal}>
           {" "}
           <CreateCabinForm />{" "}
         </Modal>
