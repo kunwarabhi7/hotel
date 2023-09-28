@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const StyledModal = styled.div`
@@ -48,3 +49,15 @@ const Button = styled.button`
     color: var(--color-grey-500);
   }
 `;
+
+const Modal = ({ children }) => {
+  return (
+    <Overlay>
+      <StyledModal>
+        <div>{children}</div>
+      </StyledModal>
+    </Overlay>
+  );
+};
+
+export default Modal;
