@@ -73,7 +73,7 @@ const Table = ({ columns, children }) => {
 const Header = ({ children }) => {
   const { columns } = useContext(TableContext);
   return (
-    <StyledHeader role="row" columns={columns}>
+    <StyledHeader role="row" as="header" columns={columns}>
       {children}
     </StyledHeader>
   );
@@ -81,12 +81,15 @@ const Header = ({ children }) => {
 const Row = ({ children }) => {
   const { columns } = useContext(TableContext);
   return (
-    <StyledHeader role="row" columns={columns}>
+    <StyledRow role="row" columns={columns}>
       {children}
-    </StyledHeader>
+    </StyledRow>
   );
 };
-const Body = ({ children }) => {};
+const Body = ({ data, render }) => {
+  if (!data.length) return <Empty>No data to show!!!</Empty>;
+  return <StyledBody>{data.map(render)}</StyledBody>;
+};
 
 Table.Row = Row;
 Table.Header = Header;

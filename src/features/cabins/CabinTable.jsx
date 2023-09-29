@@ -4,7 +4,7 @@ import Spinner from "../../ui/Spinner.jsx";
 import styled from "styled-components";
 import { useCabins } from "./useCabins.js";
 import Table from "../../ui/Table.jsx";
-
+import Menus from "../../ui/Menus.jsx";
 const TableHeader = styled.header`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -24,19 +24,22 @@ const CabinTable = () => {
   const { isLoading, cabins, error } = useCabins();
   if (isLoading) return <Spinner />;
   return (
-    <Table columns=" 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-      <Table.Header>
-        <div></div>
-        <div>Cabin</div>
-        <div>Capacity</div>
-        <div>Price</div>
-        <div>Discount</div>
-        <div></div>
-      </Table.Header>
-      {cabins.map((cabin) => (
-        <CabinRow key={cabin.id} cabin={cabin} />
-      ))}
-    </Table>
+    <Menus>
+      <Table columns=" 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+        <Table.Header>
+          <div></div>
+          <div>Cabin</div>
+          <div>Capacity</div>
+          <div>Price</div>
+          <div>Discount</div>
+          <div></div>
+        </Table.Header>
+        <Table.Body
+          data={cabins}
+          render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
+        />
+      </Table>
+    </Menus>
   );
 };
 
