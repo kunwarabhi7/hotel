@@ -6,7 +6,6 @@ const useOutsideClick = (handler, listenCapture = true) => {
   useEffect(() => {
     const handleClick = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
-        console.log("clicked");
         handler();
       }
     };
