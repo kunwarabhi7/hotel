@@ -1,5 +1,21 @@
+/* eslint-disable no-unused-vars */
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
+
+export async function getBookings() {
+  const { data: bookings, error } = await supabase
+    .from("bookings")
+    // .select("*,cabins(name),guests(fullName,email)");
+    .select(
+      "id,created_at, startDate,endDate,numOfNight,numOfGuests,status,totalPrice, cabins(name),guests(fullName,email)"
+    );
+
+  if (error) {
+    console.log(error);
+    throw new Error("Booking could not be loaded");
+  }
+  return bookings;
+}
 
 export async function getBooking(id) {
   const { data, error } = await supabase
