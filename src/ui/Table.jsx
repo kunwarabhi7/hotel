@@ -88,7 +88,7 @@ const Row = ({ children }) => {
 };
 const Body = ({ data, render }) => {
   if (!data.length) return <Empty>No data to show!!!</Empty>;
-  return <StyledBody>{data.map(render)}</StyledBody>;
+  return <StyledBody>{data?.map(render)}</StyledBody>;
 };
 
 Table.Row = Row;
