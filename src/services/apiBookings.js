@@ -7,8 +7,9 @@ export async function getBookings() {
     .from("bookings")
     // .select("*,cabins(name),guests(fullName,email)");
     .select(
-      "id,created_at, startDate,endDate,numOfNight,numOfGuests,status,totalPrice, cabins(name),guests(fullName,email)"
+      "id,created_at, startDate,endDate,numOfGuests,status,totalPrice, cabins(name),guests(fullName,email)"
     );
+  // ();
 
   if (error) {
     console.log(error);
