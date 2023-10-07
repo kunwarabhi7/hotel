@@ -72,7 +72,7 @@ function SignupForm() {
           type="password"
           id="passwordConfirm"
           {...register("passwordConfirm", {
-            required: "This Field is required",
+            required: "This Field is required ",
             validate: (value) =>
               value === getValues().password || "password need to be same",
           })}
