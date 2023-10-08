@@ -1,5 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from "styled-components";
+import { useRecentBookings } from "./useRecentBookings";
+import { useRecentStays } from "./useRecentStays";
+import { useCabins } from "../../features/cabins/useCabins";
+
+import Spinner from "../../ui/Spinner";
+import Stats from "./Stats";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -15,9 +21,25 @@ We need to distinguish between two types of data here:
 */
 
 function DashboardLayout() {
+  const { isLoading: isLoadingBooking, bookings } = useRecentBookings();
+  const {
+    isLoading: isLoadingStay,
+    // eslint-disable-next-line no-unused-vars
+    stays,
+    confirmedStays,
+    numDays,
+  } = useRecentStays();
+  const { isLoading: isLoadingCabins, cabins } = useCabins();
+  if (isLoadingBooking || isLoadingStay || isLoadingCabins) return <Spinner />;
+
   return (
     <StyledDashboardLayout>
-      <div>Statistics</div>
+      <Stats
+        bookings={bookings}
+        confirmedStays={confirmedStays}
+        numDays={numDays}
+        cabinCount={cabins.length}
+      />
       <div>Today's activity</div>
       <div>Chart stay duration</div>
       <div>Chart sale</div>
