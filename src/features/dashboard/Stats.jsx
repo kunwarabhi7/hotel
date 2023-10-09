@@ -17,7 +17,6 @@ const Stats = ({ bookings, confirmedStays, numDays, cabinCount }) => {
   const occupation =
     confirmedStays.reduce((acc, cur) => acc + cur.numOfNight, 0) /
     (numDays * cabinCount);
-  console.log(confirmedStays);
   return (
     <>
       <Stat
